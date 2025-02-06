@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 env:
   RESOURCE_GROUP_NAME: 'myResourceGroup'
+  TEST_NAME: 'myTestName'
 
 jobs:
   test-action:
@@ -22,4 +23,4 @@ jobs:
           RESOURCE_GROUP_NAME: ${{ env.RESOURCE_GROUP_NAME }}
 
       - name: Output time set in the container
-        run: echo "RG = ${{ steps.hello-action.outputs.RESOURCE_GROUP_NAME }} The time was ${{ steps.hello-action.outputs.time }} when the action said hello"
+        run: echo "TEST_NAME = ${{ steps.hello-action.outputs.TEST_NAME }} RG = ${{ steps.hello-action.outputs.RESOURCE_GROUP_NAME }} Time ${{ steps.hello-action.outputs.time }} when the action said hello"
