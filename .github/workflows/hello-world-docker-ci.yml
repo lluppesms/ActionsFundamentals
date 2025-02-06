@@ -4,6 +4,8 @@ on:
     branches: [ main ]
     paths: [ hello-world-docker-action/** ]
   workflow_dispatch:
+env:
+  RESOURCE_GROUP_NAME: 'myResourceGroup'
 
 jobs:
   test-action:
@@ -17,6 +19,7 @@ jobs:
         uses: ./hello-world-docker-action
         with:
           who-to-greet: 'Lyle'
+          RESOURCE_GROUP_NAME: ${{ env.RESOURCE_GROUP_NAME }}
 
       - name: Output time set in the container
-        run: echo "The time was ${{ steps.hello-action.outputs.time }} when the action said hello"
+        run: echo "RG = ${{ steps.hello-action.outputs.RESOURCE_GROUP_NAME }} The time was ${{ steps.hello-action.outputs.time }} when the action said hello"
